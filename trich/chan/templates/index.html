@@ -4,36 +4,62 @@
 
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale = 1.0, maximum-scale=1.0">
-    <link type="text/css" href="{% static 'framestyles/futaba.css' %}" rel="stylesheet" id="style">
-    <link type="text/css" href="{% static 'framestyles/umnochan.css' %}" rel="alternate stylesheet" id="style"
-        disabled="">
-    <link type="text/css" href="{% static 'framestyles/photon.css' %}" rel="alternate stylesheet" id="style"
-        disabled="">
 
-
-    <link type="text/css" href="{% static 'framestyles/bistrochan.css' %}" rel="alternate stylesheet" id="framestyle">
-    <link type="text/css" href="{% static 'framestyles/global1.css' %}" rel="alternate stylesheet" id="framestyle">
-    <link type="text/css" href="{% static 'framestyles/global2.css' %}" rel="stylesheet" id="framestyle">
-    <link type="text/css" href="{% static 'framestyles/global3.css' %}" rel="alternate stylesheet" id="framestyle">
-
+    <link type="text/css" href="{% static 'css/base.css' %}" rel="stylesheet">
 
     <script>
         window.addEventListener('load', eventListener());
+        window.onLoad = function () {
+            let font = getCookie('font') || 'global2';
+            document.body.style.fontFamily = font;
+        }
 
+
+        
         function eventListener() {
-            let style = getCookie('style') || 'default-style';
-            let font = getCookie('font') || 'default-font';
+            const allowedStyles = ['futaba', 'umnochan', 'photon'];
+            const defaultStyle = 'photon';
+            const allowedFrameSets = ['global0', 'global1', 'global2', 'global3', 'global4', 'global5'];
+            const defaultFrameSet = 'global2';
+
+            let style = getCookie('style');
             let frameset = getCookie('frameset');
 
+            style = allowedStyles.includes(style) ? style : defaultStyle;
+            frameset = allowedFrameSets.includes(frameset) ? frameset : defaultFrameSet;
+
             if (!frameset) {
-                frameset = isMobile() ? 'idk lol' : 'sidebar-left'
+                frameset = isMobile() ? 'global3' : 'global2';
             }
 
             setCookie('style', style);
-            setCookie('font', font);
             setCookie('frameset', frameset);
-        }
 
+            let linkStyle = document.createElement('link');
+            let linkFrameSet = document.createElement('link');
+
+            linkStyle.type = linkFrameSet.type = 'text/css';
+            linkStyle.rel = linkFrameSet.rel = 'stylesheet';
+            linkStyle.id = 'style';
+            linkFrameSet.id = 'frameset';
+
+            linkStyle.href = `static/css/styles/${style}.css`;
+            linkFrameSet.href = `static/css/framesets/${frameset}.css`;
+
+            document.head.appendChild(linkFrameSet);
+            document.head.appendChild(linkStyle);
+
+            function changeStyle(ss) {
+                if (allowedStyles.includes(ss)) {
+                style = ss;
+                setCookie('style', style);
+                linkStyle.href = `static/css/styles/${style}.css`;
+            } 
+        }
+    }
+
+        
+        
         function getCookie(name) {
             let cookies = document.cookie.split('; ')
             for (let i = 0; i < cookies.length; i++) {
@@ -54,6 +80,8 @@
         }
 
     </script>
+
+
 </head>
 
 <body>
@@ -84,12 +112,19 @@
 
                     </select> &nbsp;
                     Вид: <select name="switcher" onchange="setFrameStyle(this.value)">
-                        <option value="http://127.0.0.1:8000/static/framestyles/bistrochan.css" selected="">Закладки
+                        <option value="http://127.0.0.1:8000/static/framestyles/global0.css" selected="">Закладки
                             сверху</option>
-                        <option value="http://127.0.0.1:8000/static/framestyles/global1.css">Закладки слева</option>
-                        <option value="http://127.0.0.1:8000/static/framestyles/global2.css">Закладки слева снизу
+
+                        <option value="http://127.0.0.1:8000/static/framestyles/global5.css">Закладки
+                            сверху center</option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/global2.css" selected=''>Закладки слева
+                        </option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/global1.css">Закладки слева снизу
                         </option>
                         <option value="http://127.0.0.1:8000/static/framestyles/global3.css">Без закладок</option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/global4.css">Без закладок center
+                        </option>
+
 
 
                     </select>
@@ -362,6 +397,7 @@
 
                         </div>
                         <div class="post-wrapper-block">
+                            <div class="arrows"> >> </div>
                             <div class="post-wrapper">
                                 <div class="post-title">
                                     <span class="thread-details-author">Аноним</span>
@@ -400,6 +436,7 @@
                             </div>
                         </div>
                         <div class="post-wrapper-block">
+                            <div class="arrows"> >> </div>
                             <div class="post-wrapper">
                                 <div class="post-title">
                                     <span class="thread-details-author">Аноним</span>
@@ -430,7 +467,7 @@
                             </div>
                         </div>
                         <div class="post-wrapper-block">
-
+                            <div class="arrows"> >> </div>
                             <div class="post-wrapper">
                                 <div class="post-title">
                                     <span class="thread-details-author">Аноним</span>
@@ -533,7 +570,11 @@
 
                         </div>
                         <div class="post-wrapper-block">
+                            <div class="arrows">
+
+                            </div>
                             <div class="post-wrapper">
+
                                 <div class="post-title">
                                     <span class="thread-details-author">Аноним</span>
                                     &nbsp;
@@ -571,6 +612,7 @@
                             </div>
                         </div>
                         <div class="post-wrapper-block">
+                            <div class="arrows"> >> </div>
                             <div class="post-wrapper">
                                 <div class="post-title">
                                     <span class="thread-details-author">Аноним</span>
@@ -601,7 +643,7 @@
                             </div>
                         </div>
                         <div class="post-wrapper-block">
-
+                            <div class="arrows"> >> </div>
                             <div class="post-wrapper">
                                 <div class="post-title">
                                     <span class="thread-details-author">Аноним</span>
@@ -676,18 +718,11 @@
 
     </div>
     <script>
-
+        function setCookie(name, value) {
+            document.cookie = name + "=" + encodeURIComponent(value);
+        }
         function setStyle(ss) {
-            document.head.querySelectorAll('link#style').forEach(link => {
-                if (link.href === ss) {
-                    link.removeAttribute('disabled');
-                    link.setAttribute('rel', 'stylesheet');
-                }
-                else {
-                    link.setAttribute('disabled', '');
-                    link.setAttribute('rel', 'alternate stylesheet');
-                }
-            });
+
         }
 
         function setFont(s) {
@@ -697,17 +732,18 @@
                 document.body.style.fontSize = "17px";
             }
             else {
-                document.body.style.fontSize = "15px"
+                if (s[s.selectedIndex].id === 'verdana') {
+                    document.body.style.fontSize = "14px"
+                }
+                else {
+                    document.body.style.fontSize = "15px"
+                }
             }
         }
 
         function setFrameStyle(ss) {
-            document.head.querySelectorAll('link#framestyle').forEach(link => {
-                if (link.href === ss) {
-                    link.setAttribute('rel', 'stylesheet');
-                } else {
-                    link.setAttribute('rel', 'alternate stylesheet');
-                }
+            document.head.querySelectorAl('link#framestyle').forEach(link => {
+                link.delt
             });
         }
 

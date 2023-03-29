@@ -1,0 +1,35 @@
+.genialno {
+    display: flex;
+    flex-direction: column;
+}
+.topmenu-wrapper {
+    width: 60%;
+    margin: 0 auto;
+    display: table;
+}
+.tabs-logo-wrapper {
+    display: none;
+
+}
+
+.boardtitle-wrapper {
+    display: block;
+    width: 60%;
+    min-width: 1060px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.threadboard-wrapper {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-top: 1px solid var(--main-hr-color);
+    /* margin: 10px auto; */
+}
+
+
+
+
+
+

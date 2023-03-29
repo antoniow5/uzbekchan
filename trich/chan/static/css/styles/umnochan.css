@@ -1,0 +1,57 @@
+
+:root {
+  --main-hr-color: #D0AB65;
+  --theme-sbthumb: #D0AB65;
+  --theme-sbtrack: #ffe;
+
+
+}
+
+body {
+  background: #ffe url(Akarin2.png) bottom right fixed no-repeat;
+  color: #090E00;
+}
+
+hr {
+    color: #D0AB65;
+}
+.menu {
+  color: #800000;
+}
+.tabs-header {
+  background-color: #FFECB2;
+    color: #090E00;
+}
+.boardtitle-title {
+  color: #800000;
+
+}
+.boardtitle-create {
+  color: #800000;
+
+}
+.thread-details-title {
+
+color: #900000;
+font-size: 1.1em;
+}
+
+.thread-missed {
+  color: #707070
+}
+
+.post-wrapper {
+  background-color: #FFECB2;
+  border: 1px solid #D0AB65;
+  border-radius: 4px;
+}
+.tabs-wrapper ::-webkit-scrollbar-track {
+  
+  color: #ffe;
+}
+
+.tabs-wrapper ::-webkit-scrollbar-thumb {
+  color: #D0AB65;
+}
+
+
