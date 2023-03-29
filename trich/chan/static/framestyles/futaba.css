@@ -1,0 +1,97 @@
+:root {
+    --main-hr-color: #D9BFB7;
+    --theme-sbthumb: #EEAA88;
+    --theme-sbtrack: #ffe;
+  
+  
+  }
+
+  
+  body {
+    background: #ffe;
+    color: #800000;
+  }
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    
+    color: #ffe;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #fca;
+  }
+  body::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    
+    background: #ffe;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: #fca;
+  }
+  
+  hr {
+      color: #D9BFB7;
+  }
+  .menu {
+    color: #800000;
+  }
+
+  .board-link {
+    font-size: 1em;
+  }
+  .board-link:visited {
+        color: #2200CC;
+      }
+      
+  
+  .tabs-header {
+    /* background-color: #EEAA88; */
+    background-color: #fca;
+      /* color: #800000; */
+  }
+  .boardtitle-title {
+    /* color: #800000; */
+  
+  }
+
+  .boardtitle-create {
+    /* color: #800000; */
+  
+  }
+  .thread-details-title {
+  
+  color: #700000;
+  font-size: 1.1em;
+  }
+  
+  .thread-missed {
+    color: #707070
+  }
+  
+  .post-wrapper {
+    background-color: #F0E0D6;
+    /* border: 1px solid #D0AB65; */
+    border-radius: 4px;
+  }
+
+
+
+
+
+  
+ 
+.thread-details-author {
+    color: #117743;
+    font-weight: bold;
+}
+
+.tabs-ul {
+    font-size: 1em;
+}

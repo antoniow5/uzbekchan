@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+
+    <link href="{% static '/styles/global.css' %}" rel="stylesheet" type="text/css">
+    <link href=" {% static '/styles/futaba.css' %}" rel="stylesheet" type="text/css" title="futaba">
+    <link href="{% static '/styles/futabafade.css' %}" rel="alternate stylesheet" type="text/css" title="futabafade"
+        disabled="">
+    <link href="{% static '/styles/burichan.css' %}" rel="alternate stylesheet" type="text/css" title="burichan"
+        disabled="">
+    <link href="{% static '/styles/burichanfade.css' %}" rel="alternate stylesheet" type="text/css" title="burichanfade"
+        disabled="">
+    <link href="{% static '/styles/makaba.css' %}" rel="alternate stylesheet" type="text/css" title="makaba"
+        disabled="">
+    <link href="{% static '/styles/umnochan.css' %}" rel="alternate stylesheet" type="text/css" title="umnochan"
+        disabled="">
+
+
+
+</head>
+
+<body>
+    <div id="overlay" style="display: none;" class="overlay"></div>
+    <div class="settings-window" id="settings-window"
+        style="top: 233.067px; left: 840px; z-index: 1000; display: none;">
+        <div id="settings-window-header" class="settings-window-header">Юзер настройки
+            <span style="float: right; margin-right: 10px; cursor: pointer;" onclick="closeSettings()"><b>X</b></span>
+        </div>
+        <div class="settings-window-inside">
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="context-header">
+        <span class="context-header-left">
+            Стили: <select name="switcher" onchange="setStyleSheet(this.value)">
+                <option value="futaba" selected>Futaba</option>
+                <option value="futabafade">Futaba fade</option>
+                <option value="burichan">Burichan</option>
+                <option value="burichanfade">Burichan fade</option>
+                <option value="makaba">Makaba</option>
+                <option value="umnochan">Umnochan</option>
+
+
+
+            </select>
+            <select name="switcher" onchange="setFont(this.value)">
+                <option value="arial, sans-serif" selected>Arial</option>
+                <option value="trebuchet ms, sans-serif">Trebuchet ms</option>
+                <option value="verdana, sans-serif">Verdana</option>
+            </select>
+            Идентификатор сессии: 2b1189a188b44ad18c35e113ac6ceead <button onclick="promptMe()">Ввести</button>
+        </span>
+        <span class="context-header-right">
+            <!-- Закладки: [ <a href="http://USERNAME:PASSWORD@CAM_IP_ADD:PORT" title="работа сайта | site discussion">d</a> | <a
+                href="/cgi-bin/../au/" title="автомобили | automobiles">au</a> / <a href="/cgi-bin/../b/"
+                title="бред | random">b</a> / <a href="/cgi-bin/../bro/" title="my little pony">bro</a> / <a
+                href="//410chan.org/cu/" title="кулинария | cooking">cu</a> / <a href="//410chan.org/dev/"
+                title="разработка | development">dev</a> / <a href="/cgi-bin/../hr/"
+                title="высокое разрешение | high resolution">hr</a> / <a href="/cgi-bin/../l/"
+                title="литература | literature">l</a> / <a href="/cgi-bin/../m/"
+                title="макросы/копипаста | macros/copypasta">m</a> / <a href="/cgi-bin/../mu/"
+                title="музыка | music">mu</a> / <a href="/cgi-bin/../o/" title="рисование | artwork">o</a> / <a
+                href="/cgi-bin/../r/" title="просьбы | requests">r</a> / <a href="/cgi-bin/../s/"
+                title="электроника и по | electronics and software">s</a> / <a href="/cgi-bin/../tran/"
+                title="иностранные языки | foreign languages">tran</a> / <a href="//nowere.net/tu/"
+                title="туризм | tourism">tu</a> / <a href="/cgi-bin/../tv/"
+                title="кино, тв и мультфильмы | films, tv and cartoons">tv</a> / <a href="/cgi-bin/../vg/"
+                title="видеоигры | videogames">vg</a> / <a href="/cgi-bin/../x/"
+                title="паранормальные явления | paranormal">x</a> | <a href="/cgi-bin/../a/"
+                title="аниме и манга | anime and manga">a</a> / <a href="/cgi-bin/../aa/"
+                title="аниме-арт | anime art">aa</a> / <a href="/cgi-bin/../c/" title="косплей | cosplay">c</a> / <a
+                href="/cgi-bin/../fi/" title="фигурки | figurines">fi</a> / <a href="/cgi-bin/../jp/"
+                title="япония | japan">jp</a> / <a href="/cgi-bin/../rm/" title="rozen maiden">rm</a> / <a
+                href="/cgi-bin/../tan/" title="сетевые персонажи | net characters">tan</a> / <a href="/cgi-bin/../to/"
+                title="touhou">to</a> / <a href="//410chan.org/ts/" title="цундере | tsundere">ts</a> / <a
+                href="/cgi-bin/../vn/" title="визуальные новеллы | visual novels">vn</a>]
+            <br> -->
+            Дополнительные сервисы: [<a href="https://410chan.org/r/" target="_top">Радио 410</a>] [<a
+                href="https://iibooru.org/" target="_top">ii.booru</a>-<a href="https://gensokyo.4otaku.org/"
+                target="_top" title="Gensokyo RPGs">Архив РПГ</a>] [<a href="http://acomics.ichan.ru"
+                target="_top">acomics</a>-<a href="http://ichan.ru/vg/" target="_top">cf</a>-<a
+                href="http://ost.ichan.ru" target="_top">ost</a>] [<a href="https://twitter.com/ru_iichan" target="_top"
+                title="IIchan on Twitter">@</a>] - [<a href="/au/arch/res/">Архив</a> - <a
+                href="/au/catalogue.html">Каталог</a>] [<a href="/cgi-bin/../" target="_top">Главная</a>]
+        </span>
+
+        <div style="clear:both;"></div>
+        <hr>
+    </div>
+    <div class="site-wrapper">
+        <div class="header-menu">
+            <div class="wakaba">
+                <div style="float: left;">
+                    <img style="vertical-align: middle" src="{% static '/static/Wakaba_mark.svg' %}" height=60 width=38>
+                    <span class="logo-text">БыстроЧан</span>
+                </div>
+            </div>
+            <div class="nedvach">
+                <div style="float: left;">
+                    <img style="vertical-align: middle" src="{% static '/static/dvach-mark.png' %}" height=60 width=38>
+                    <span class="logo-text">НеДвач</span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="board-menu">
+            <div class="board-menu-column">
+                <div class="board-menu-column-header">
+                    <span class="board-menu-column-header-text">Общие</span>
+                </div>
+                <div class="board-menu-column-links-wrapper">
+                    <ul class="board-menu-column-links-ul">
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/hot Обсуждаемое</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/b Бред</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/soc Общение</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/rf Убежище</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="board-menu-column">
+                <div class="board-menu-column-header">
+                    <span class="board-menu-column-header-text"></span>
+                </div>
+                <div class="board-menu-column-links-wrapper">
+                    <ul class="board-menu-column-links-ul">
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/hot Обсуждаемое</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/b Бред</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/soc Общение</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/rf Убежище</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="board-menu-column">
+                <div class="board-menu-column-header">
+                    <span class="board-menu-column-header-text"></span>
+                </div>
+                <div class="board-menu-column-links-wrapper">
+                    <ul class="board-menu-column-links-ul">
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/hot Обсуждаемое</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/b Бред</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/soc Общение</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/rf Убежище</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="board-menu-column">
+                <div class="board-menu-column-header">
+                    <span class="board-menu-column-header-text"></span>
+                </div>
+                <div class="board-menu-column-links-wrapper">
+                    <ul class="board-menu-column-links-ul">
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/hot Обсуждаемое</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/b Бред</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/soc Общение</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/rf Убежище</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="board-menu-column">
+                <div class="board-menu-column-header">
+                    <span class="board-menu-column-header-text"></span>
+                </div>
+                <div class="board-menu-column-links-wrapper">
+                    <ul class="board-menu-column-links-ul">
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/hot Обсуждаемое</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/b Бред</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/soc Общение</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/rf Убежище</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="board-menu-column">
+                <div class="board-menu-column-header">
+                    <span class="board-menu-column-header-text"></span>
+                </div>
+                <div class="board-menu-column-links-wrapper">
+                    <ul class="board-menu-column-links-ul">
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/hot Обсуждаемое</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/b Бред</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/soc Общение</a>
+                        </li>
+                        <li class="board-menu-column-links-li">
+                            <a class="board-link" href="/">/rf Убежище</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <hr>
+        <div class="board-submenu">
+            <div class="submenu-left">
+                <div style="margin-left: 10px;">
+                    <span>
+                        <a href="https://410chan.org/r/" target="_top">Главная</a> &nbsp;
+                        <a href="#" onclick="openSettings()">Настройки</a> &nbsp;&nbsp;
+                        <span class="zakladki-text">Мобильные закладки: </span>
+                        [<a href="https://410chan.org/r/" target="_top">b</a> , <a href="https://410chan.org/r/"
+                            target="_top">d</a>, <a href="https://410chan.org/r/" target="_top">pr</a>]
+                    </span>
+                </div>
+            </div>
+            <div class="submenu-right">
+                <div style="margin-right: 10px;">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+
+                    </label>
+                    <span style="vertical-align: middle;"> Форум мод</span>
+                </div>
+            </div>
+        </div>
+        <div class="board-banner-header">
+            <img style="display: inline-block;" src="{% static 'static/rf_2.png' %}" width=300 height=100>
+
+        </div>
+        <span class="board-title"><b>/b - Бред</b></span>
+        <div class="new-thread"> [<a>Создать тред</a>]</div>
+    </div>
+    <!-- От сюда начинается меняемая часть -->
+    <div class="thread-board-wrapper">
+        <hr>
+
+        <div class="thread-page">
+            <div class="thread-wrapper">
+                <div class="thread-details">
+                    <span class="thread-details-title">
+                        Заголовок треда с одной картинкой
+                    </span>
+                    &nbsp;
+                    <span class="thread-details-author">Аноним</span>
+                    &nbsp;
+                    15/03/23 Срд 02:21:01
+                    №
+                    2009456
+                </div>
+
+                <!-- <table style="margin-left: 16px; max-width: 70%;"> -->
+                <div class="op-body">
+                    <div class="thread-images thread-images-single">
+                        <div class="image-with-details">
+                            <div class="image-detail">
+                                <a href="{% static '/static/1679733349478s.jpg'%}">1679733349478s.jpg</a>
+                                <br>
+                                <span>2860Кб,
+                                    1920x1080</span>
+                            </div>
+                            <img class="thumbnail" src="{% static '/static/1679733349478s.jpg'%}">
+                        </div>
+
+                    </div>
+                    <div class="thread-op-text">Недавно один деятель предложил, что неплохо было бы собрать
+                        статистику о
+                        том, какие тайтлы в /a/ обсуждают больше всего. Что и было сделано. <br>
+                        Данные собирались путем парсинга каталога /а/ с ii.yakuji.moe, архив в выборке не
+                        участвовал.
+                        Из списка тредов фильтровались треды, не посвященные тайтлам (треды без темы или тема
+                        содержала
+                        кириллицу), треды группировались по тайтлам, по возможности вариативные названия
+                        объединялись
+                        (konosuba, shimoseka, oregairu), для каждого тайтла подсчитывалось количество постов по
+                        всем
+                        тредам.
+                        Топ-50 тайтлов можно увидеть на пик рилейтед.
+                        В целом понятно, что лучший тайтл по мнению /а/ - Коносуба. Тайпмун немного считерил,
+                        объединив
+                        много тайтлов в один заголовок, раз так уже было сделано, Fate Stay Night/UBW были
+                        объединены в
+                        него же.
+                    </div>
+
+                </div>
+
+                <div class="post-wrapper">
+                    <div class="thread-details">
+
+                        <span class="thread-details-author">Аноним</span>
+                        &nbsp;
+                        15/03/23 Срд 02:21:01
+                        №
+                        2009456
+                    </div>
+                    <div class="post-body">
+                        <div class="thread-images thread-images-single">
+                            <div class="image-with-details">
+                                <div class="image-detail">
+                                    <a href="{% static '/static/1679733349478s.jpg'%}">1679733349478s.jpg</a>
+                                    <br>
+                                    <span>2860Кб,
+                                        1920x1080</span>
+                                </div>
+                                <img class="thumbnail" src="{% static '/static/1679733349478s.jpg'%}">
+                            </div>
+
+                        </div>
+                    <div class="post-message">
+                        Ну, это довольно выигрышная позиция: видно же по доске, что черные играли без короля
+                        и
+                        выиграли. Им в принципе было сложнее проиграть. Это наглядно демонстрирует нам силу
+                        республик, по сравнению с монархиями.
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <hr>
+            <div class="thread-wrapper">
+                <div class="thread-details">
+                    <span class="thread-details-title">
+                        Заголовок треда с одной картинкой
+                    </span>
+                    &nbsp;
+                    <span class="thread-details-author">Аноним</span>
+                    &nbsp;
+                    15/03/23 Срд 02:21:01
+                    №
+                    2009456
+                </div>
+                <div style="display: table;">
+                    <div class="thread-images thread-images-multiple">
+                        <div class="image-with-details">
+                            <div class="image-detail">
+                                <a href="{% static '/static/1679733349478s.jpg'%}">1679733349478s.jpg</a> <br
+                                    <span>2860Кб,
+                                1920x1080</span>
+                            </div>
+                            <img class="thumbnail" src="{% static '/static/1679733349478s.jpg'%}">
+                        </div>
+                        <div class="image-with-details">
+                            <div class="image-detail">
+                                <a href="{% static '/static/1679733349478s.jpg'%}">1679733349478s.jpg</a> <br
+                                    <span>2860Кб,
+                                1920x1080</span>
+                            </div>
+                            <img class="thumbnail" src="{% static '/static/1679733349478s.jpg'%}">
+                        </div>
+                        <div class="image-with-details">
+                            <div class="image-detail">
+                                <a href="{% static '/static/1679733349478s.jpg'%}">1679733349478s.jpg</a> <br
+                                    <span>2860Кб,
+                                1920x1080</span>
+                            </div>
+                            <img class="thumbnail" src="{% static '/static/1679733349478s.jpg'%}">
+                        </div>
+
+
+
+                    </div>
+                    <div class="thread-op-text">Недавно один деятель предложил, что неплохо было бы собрать
+                        статистику о
+                        том, какие тайтлы в /a/ обсуждают больше всего. Что и было сделано. <br>
+                        Данные собирались путем парсинга каталога /а/ с ii.yakuji.moe, архив в выборке не
+                        участвовал.
+                        Из списка тредов фильтровались треды, не посвященные тайтлам (треды без темы или тема
+                        содержала
+                        кириллицу), треды группировались по тайтлам, по возможности вариативные названия
+                        объединялись
+                        (konosuba, shimoseka, oregairu), для каждого тайтла подсчитывалось количество постов по всем
+                        тредам.
+                        Топ-50 тайтлов можно увидеть на пик рилейтед.
+                        В целом понятно, что лучший тайтл по мнению /а/ - Коносуба. Тайпмун немного считерил,
+                        объединив
+                        много тайтлов в один заголовок, раз так уже было сделано, Fate Stay Night/UBW были
+                        объединены в
+                        него же.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static '/myboard.js' %}"> </script>
+
+
+
+</body>
+
+</html>

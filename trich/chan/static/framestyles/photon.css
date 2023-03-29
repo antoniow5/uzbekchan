@@ -1,0 +1,74 @@
+
+
+:root {
+    --main-hr-color: #DDD;
+    --theme-sbthumb: #DDD;
+    --theme-sbtrack: #eeeeee;
+  
+  
+  }
+  
+  body {
+    background: #eeeeee ;
+    color: #333;
+  }
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    
+    background: #eeeeee;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #DDD;
+  }
+  body::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  body::-webkit-scrollbar-track {
+    
+    background: #eeeeee;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: #DDD;
+  }
+  
+  hr {
+      color: #DDD;
+  }
+
+  a {
+    color: #FF6600;
+    text-decoration: none;
+    
+  }
+
+  .tabs-header {
+    background-color: #DDD;
+  }
+  .boardtitle-title {
+    color: #FF6600;
+  
+  }
+  a.boardtitle-create{
+    color: #FF6600;
+  
+  }
+  .thread-details-title {
+  
+  color: #004A99;
+  font-size: 1.1em;
+  }
+  
+  .thread-missed {
+    color: #707070
+  }
+  
+  .post-wrapper {
+    background-color: #DDD;
+    border-radius: 4px;
+  }

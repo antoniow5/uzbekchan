@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale = 1.0, maximum-scale=1.0">
+    <link type="text/css" href="{% static 'framestyles/futaba.css' %}" rel="stylesheet" id="style">
+    <link type="text/css" href="{% static 'framestyles/umnochan.css' %}" rel="alternate stylesheet" id="style"
+        disabled="">
+    <link type="text/css" href="{% static 'framestyles/photon.css' %}" rel="alternate stylesheet" id="style"
+        disabled="">
+
+
+    <link type="text/css" href="{% static 'framestyles/bistrochan.css' %}" rel="alternate stylesheet" id="framestyle">
+    <link type="text/css" href="{% static 'framestyles/global1.css' %}" rel="alternate stylesheet" id="framestyle">
+    <link type="text/css" href="{% static 'framestyles/global2.css' %}" rel="stylesheet" id="framestyle">
+    <link type="text/css" href="{% static 'framestyles/global3.css' %}" rel="alternate stylesheet" id="framestyle">
+
+
+    <script>
+        window.addEventListener('load', eventListener());
+
+        function eventListener() {
+            let style = getCookie('style') || 'default-style';
+            let font = getCookie('font') || 'default-font';
+            let frameset = getCookie('frameset');
+
+            if (!frameset) {
+                frameset = isMobile() ? 'idk lol' : 'sidebar-left'
+            }
+
+            setCookie('style', style);
+            setCookie('font', font);
+            setCookie('frameset', frameset);
+        }
+
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ')
+            for (let i = 0; i < cookies.length; i++) {
+                let cookiePair = cookies[i].split('=');
+                if (name == cookiePair[0]) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return undefined;
+        }
+
+        function setCookie(name, value) {
+            document.cookie = name + "=" + encodeURIComponent(value);
+        }
+
+        function isMobile() {
+            return navigator.userAgent.includes('Mobi');
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="genialno">
+        <div class="topmenu-wrapper">
+            <div class="menu">
+                <div class="topmenu-left">
+                    Сессия: 2b1189a188b44ad18c35e113ac6ceead <button onclick="promptMe()">Ввести</button>
+                    <br>
+                    Стили: <select name="switcher" onchange="setStyle(this.value)">
+                        <option value="http://127.0.0.1:8000/static/framestyles/futaba.css">Futaba</option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/photon.css" selected="">Photon</option>
+                        <option value="burichan">Burichan</option>
+                        <option value="burichanfade">Burichan fade</option>
+                        <option value="makaba">Makaba</option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/umnochan.css">Umnochan</option>
+
+
+
+                    </select>
+                    <select name="switcher" onchange="setFont(this)">
+                        <option id="arial" value="arial, sans-serif" selected="">Arial</option>
+                        <option id="trebuchen" value="trebuchet ms, sans-serif">Trebuchet ms</option>
+                        <option id="verdana" value="verdana, sans-serif">Verdana</option>
+                        <option id="times" value="'Times New Roman', Times, serif">Times New Roman</option>
+                        <option id="a" value="Malgun-Gothic">Times New Roman</option>
+
+
+                    </select> &nbsp;
+                    Вид: <select name="switcher" onchange="setFrameStyle(this.value)">
+                        <option value="http://127.0.0.1:8000/static/framestyles/bistrochan.css" selected="">Закладки
+                            сверху</option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/global1.css">Закладки слева</option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/global2.css">Закладки слева снизу
+                        </option>
+                        <option value="http://127.0.0.1:8000/static/framestyles/global3.css">Без закладок</option>
+
+
+                    </select>
+                </div>
+                <div class="topmenu-right">
+                    Дополнительные сервисы: [<a href="https://410chan.org/r/" target="_top">Радио 410</a>] [<a
+                        href="https://iibooru.org/" target="_top">ii.booru</a>-<a href="https://gensokyo.4otaku.org/"
+                        target="_top" title="Gensokyo RPGs">Архив РПГ</a>] [<a href="http://acomics.ichan.ru"
+                        target="_top">acomics</a>-<a href="http://ichan.ru/vg/" target="_top">cf</a>-<a
+                        href="http://ost.ichan.ru" target="_top">ost</a>] [<a href="https://twitter.com/ru_iichan"
+                        target="_top" title="IIchan on Twitter">@</a>] - [<a href="/au/arch/res/">Архив</a> - <a
+                        href="/au/catalogue.html">Каталог</a>] [<a href="/cgi-bin/../" target="_top">Главная</a>]
+                </div>
+            </div>
+        </div>
+        <!-- <hr> -->
+
+        <div class="tabs-logo-wrapper">
+            <div class="logo-wrapper">
+                <div class="logo">
+                    <div style="display: table-cell"><img src="{% static 'static/Wakaba_mark.svg' %}" height="60"
+                            width="38"></div>
+
+                    <div style="display: table-cell; vertical-align: middle">БыстроЧан</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tabs-wrapper">
+                <div class="tabs-block">
+                    <div class="tabs-header">
+                        Закрепленные
+                    </div>
+                    <ul class="tabs-ul">
+                        <li>
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/api Разработчикам</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Обратная связь</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Задонатить</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabs-block">
+                    <div class="tabs-header">
+                        Другие закладки
+                    </div>
+                    <ul class="tabs-ul">
+                        <li>
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/api Разработчикам</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Обратная связь</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Задонатить</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabs-block">
+                    <div class="tabs-header">
+                    </div>
+                    <ul class="tabs-ul">
+                        <li>
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/api Разработчикам</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Обратная связь</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Задонатить</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabs-block">
+                    <div class="tabs-header">
+                    </div>
+                    <ul class="tabs-ul">
+                        <li>
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/api Разработчикам</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Обратная связь</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Задонатить</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabs-block">
+                    <div class="tabs-header">
+
+                    </div>
+                    <ul class="tabs-ul">
+                        <li>
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/api Разработчикам</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Обратная связь</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Задонатить</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tabs-block">
+                    <div class="tabs-header">
+
+                    </div>
+                    <ul class="tabs-ul">
+                        <li>
+                            <a class="board-link" href="/">/all Все доски</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/d Работа сайта</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">/api Разработчикам</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Обратная связь</a>
+                        </li>
+                        <li>
+                            <a class="board-link" href="/">Задонатить</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <hr>
+        </div>
+        <div class="boardtitle-wrapper">
+            <div class="boardtitle-menu">
+                <div class="boardtitle-menu-row">
+
+
+                    <div class="boardtitle-menu-left">
+                        <span>
+                            <a href="https://410chan.org/r/" target="_top">Главная</a> &nbsp;
+                            <a href="#" onclick="openSettings()">Настройки</a> &nbsp;&nbsp;
+                            <span class="zakladki-text">Мобильные закладки: </span>
+                            [<a href="https://410chan.org/r/" target="_top">b</a> , <a href="https://410chan.org/r/"
+                                target="_top">d</a>, <a href="https://410chan.org/r/" target="_top">pr</a>]
+                        </span>
+                    </div>
+                    <div class="boardtitle-menu-right">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+
+                        </label>
+                        <span style="vertical-align: middle;"> Форум мод</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="boardtitle-banner">
+                <div class="boardtitle-banner-image">
+                    <img src="{% static 'static/rf_2.png' %}" width=300 height=100>
+                </div>
+            </div>
+            <div class="boardtitle-title">
+                /b - Бред
+            </div>
+            <div class="boardtitle-create">
+                [<a href="/">Создать тред</a>]
+            </div>
+
+        </div>
+        <div class="content-wrapper">
+            <div class="threadboard-wrapper">
+                <div class="threadboard-page">
+                    <div class="thread-wrapper">
+                        <div class="thread-title">
+                            <span class="thread-details-title">
+                                Заголовок треда с одной картинкой
+                            </span>
+                            &nbsp;
+                            <span class="thread-details-author">Аноним</span>
+                            &nbsp;
+                            15/03/23 Срд 02:21:01
+                            №
+                            2009456
+                        </div>
+                        <div class="op-post-wrapper">
+                            <div class="images-single">
+                                <div class="image-block">
+                                    <div class="image-title">
+                                        <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                        <br>
+                                        <span>2860Кб,
+                                            1920x1080</span>
+
+                                    </div>
+                                    <img class="thumbnail" src="{% static 'static/Akarin2.png' %}">
+
+                                </div>
+                            </div>
+
+                            <div class="op-post-text-image-single">
+                                Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                отказался, в основании того, что это денег немалых стоит и что они не нужны особо в
+                                таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                заниматься. Мне 17 лет.
+                                Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                отказался, в основании того, что<br> это денег немалых стоит и что они не нужны особо в
+                                таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                заниматься. Мне 17 лет.
+                                Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                отказался, в основании того, что это денег немалых стоит и что они не нужны особо в
+                                таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                заниматься. Мне 17 лет.
+
+                            </div>
+                            <div class="replies">
+                                <a> >>12812382 </a>
+                            </div>
+                            <div class="thread-missed">
+                                Пропущено 27 постов, 10 с картинками
+                            </div>
+
+                        </div>
+                        <div class="post-wrapper-block">
+                            <div class="post-wrapper">
+                                <div class="post-title">
+                                    <span class="thread-details-author">Аноним</span>
+                                    &nbsp;
+                                    15/03/23 Срд 02:21:01
+                                    №
+                                    2009456
+                                </div>
+                                <div class="post-reply-wrapper">
+                                    <div class="images-single">
+                                        <div class="image-block">
+                                            <div class="image-title">
+                                                <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                                <br>
+                                                <span>2860Кб,
+                                                    1920x1080</span>
+
+                                            </div>
+                                            <img class="thumbnail-reply" src="1679733349478s.jpg">
+
+                                        </div>
+                                    </div>
+                                    <div class="post-text-image-single">
+                                        Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                        отказался, в основании того, что<br> это денег немалых стоит и что они не нужны
+                                        особо в
+                                        таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                        заниматься. Мне 17 лет.
+                                        Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                        отказался, в основании того, что это денег немалых стоит и что они не нужны
+                                        особо в
+                                        таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                        заниматься. Мне 17 лет.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-wrapper-block">
+                            <div class="post-wrapper">
+                                <div class="post-title">
+                                    <span class="thread-details-author">Аноним</span>
+                                    &nbsp;
+                                    15/03/23 Срд 02:21:01
+                                    №
+                                    2009456
+                                </div>
+                                <div class="post-reply-wrapper">
+                                    <!-- <div class="images-single">
+                                    <div class="image-block">
+                                        <div class="image-title">
+                                            <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                            <br>
+                                            <span>2860Кб,
+                                                1920x1080</span>
+    
+                                        </div>
+                                        <img class="thumbnail-reply" src="1679733349478s.jpg">
+    
+                                    </div>
+                                </div> -->
+                                    <div class="post-text-image-none">
+                                        Добрый вечер! Живу в небольшом городке,
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="post-wrapper-block">
+
+                            <div class="post-wrapper">
+                                <div class="post-title">
+                                    <span class="thread-details-author">Аноним</span>
+                                    &nbsp;
+                                    15/03/23 Срд 02:21:01
+                                    №
+                                    2009456
+                                </div>
+                                <div class="post-reply-wrapper">
+                                    <div class="images-single">
+                                        <div class="image-block">
+                                            <div class="image-title">
+                                                <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                                <br>
+                                                <span>2860Кб,
+                                                    1920x1080</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="post-text">
+                                            Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                            отказался, в основании того, что<br> это денег немалых стоит и что они не
+                                            нужны особо в
+                                            таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                            заниматься. Мне 17 лет.
+                                            Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                            отказался, в основании того, что это денег немалых стоит и что они не нужны
+                                            особо в
+                                            таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                            заниматься. Мне 17 лет.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <hr>
+                    <div class="thread-wrapper">
+                        <div class="thread-title">
+                            <span class="thread-details-title">
+                                Заголовок треда с тремя картинками
+                            </span>
+                            &nbsp;
+                            <span class="thread-details-author">Аноним</span>
+                            &nbsp;
+                            15/03/23 Срд 02:21:01
+                            №
+                            2009456
+                        </div>
+                        <div class="op-post-wrapper">
+                            <div class="images-multiple">
+                                <div class="image-block">
+                                    <div class="image-title">
+                                        <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                        <br>
+                                        <span>2860Кб,
+                                            1920x1080</span>
+
+                                    </div>
+                                    <img class="thumbnail" src="1679733349478s.jpg">
+
+                                </div>
+                                <div class="image-block">
+                                    <div class="image-title">
+                                        <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                        <br>
+                                        <span>2860Кб,
+                                            1920x1080</span>
+
+                                    </div>
+                                    <img class="thumbnail" src="Akarin2.png">
+
+                                </div>
+                            </div>
+
+                            <div class="op-post-text-image-multiple">
+                                Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                отказался, в основании того, что это денег немалых стоит и что они не нужны особо в
+                                таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                заниматься. Мне 17 лет.
+                                Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                отказался, в основании того, что<br> это денег немалых стоит и что они не нужны особо в
+                                таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                заниматься. Мне 17 лет.
+                                Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                отказался, в основании того, что это денег немалых стоит и что они не нужны особо в
+                                таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                заниматься. Мне 17 лет.
+
+                            </div>
+                            <div class="replies">
+                                <a> >>12812382 </a>
+                            </div>
+                            <div class="thread-missed">
+                                Пропущено 27 постов, 10 с картинками
+                            </div>
+
+                        </div>
+                        <div class="post-wrapper-block">
+                            <div class="post-wrapper">
+                                <div class="post-title">
+                                    <span class="thread-details-author">Аноним</span>
+                                    &nbsp;
+                                    15/03/23 Срд 02:21:01
+                                    №
+                                    2009456
+                                </div>
+                                <div class="post-reply-wrapper">
+                                    <div class="images-single">
+                                        <div class="image-block">
+                                            <div class="image-title">
+                                                <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                                <br>
+                                                <span>2860Кб,
+                                                    1920x1080</span>
+
+                                            </div>
+                                            <img class="thumbnail-reply" src="1679733349478s.jpg">
+
+                                        </div>
+                                    </div>
+                                    <div class="post-text-image-single">
+                                        Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                        отказался, в основании того, что<br> это денег немалых стоит и что они не нужны
+                                        особо в
+                                        таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                        заниматься. Мне 17 лет.
+                                        Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                        отказался, в основании того, что это денег немалых стоит и что они не нужны
+                                        особо в
+                                        таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                        заниматься. Мне 17 лет.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-wrapper-block">
+                            <div class="post-wrapper">
+                                <div class="post-title">
+                                    <span class="thread-details-author">Аноним</span>
+                                    &nbsp;
+                                    15/03/23 Срд 02:21:01
+                                    №
+                                    2009456
+                                </div>
+                                <div class="post-reply-wrapper">
+                                    <!-- <div class="images-single">
+                                    <div class="image-block">
+                                        <div class="image-title">
+                                            <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                            <br>
+                                            <span>2860Кб,
+                                                1920x1080</span>
+    
+                                        </div>
+                                        <img class="thumbnail-reply" src="1679733349478s.jpg">
+    
+                                    </div>
+                                </div> -->
+                                    <div class="post-text-image-none">
+                                        Добрый вечер! Живу в небольшом городке,
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="post-wrapper-block">
+
+                            <div class="post-wrapper">
+                                <div class="post-title">
+                                    <span class="thread-details-author">Аноним</span>
+                                    &nbsp;
+                                    15/03/23 Срд 02:21:01
+                                    №
+                                    2009456
+                                </div>
+                                <div class="post-reply-wrapper">
+                                    <div class="images-multiple">
+                                        <div class="image-block">
+                                            <div class="image-title">
+                                                <span><a
+                                                        href="{% static 'static/Akarin2.png' %}">1679733349478s.jpg</a></span>
+                                                <br>
+                                                <span>2860Кб,
+                                                    1920x1080</span>
+
+                                            </div>
+                                            <img class="thumbnail-reply" src="{% static 'static/Akarin2.png' %}">
+
+                                        </div>
+                                        <div class="image-block">
+                                            <div class="image-title">
+                                                <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                                <br>
+                                                <span>2860Кб,
+                                                    1920x1080</span>
+
+                                            </div>
+                                            <img class="thumbnail-reply" src="1679733349478s.jpg">
+
+                                        </div>
+                                        <div class="image-block">
+                                            <div class="image-title">
+                                                <span><a href="/static/1679733349478s.jpg">1679733349478s.jpg</a></span>
+                                                <br>
+                                                <span>2860Кб,
+                                                    1920x1080</span>
+
+                                            </div>
+                                            <img class="thumbnail-reply" src="Akarin2.png">
+
+                                        </div>
+                                    </div>
+                                    <div class="post-text-image-multiple">
+                                        Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                        отказался, в основании того, что<br> это денег немалых стоит и что они не
+                                        нужны особо в
+                                        таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                        заниматься. Мне 17 лет.
+                                        Добрый вечер! Живу в небольшом городке, мама предлагала учиться на права. Я
+                                        отказался, в основании того, что это денег немалых стоит и что они не нужны
+                                        особо в
+                                        таком небольшом городе. Расскажите плюс и стоит ли в молодом возрасте этим
+                                        заниматься. Мне 17 лет.
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <hr>
+
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <script>
+
+        function setStyle(ss) {
+            document.head.querySelectorAll('link#style').forEach(link => {
+                if (link.href === ss) {
+                    link.removeAttribute('disabled');
+                    link.setAttribute('rel', 'stylesheet');
+                }
+                else {
+                    link.setAttribute('disabled', '');
+                    link.setAttribute('rel', 'alternate stylesheet');
+                }
+            });
+        }
+
+        function setFont(s) {
+
+            document.body.style.fontFamily = s[s.selectedIndex].value;
+            if (s[s.selectedIndex].id === 'times') {
+                document.body.style.fontSize = "17px";
+            }
+            else {
+                document.body.style.fontSize = "15px"
+            }
+        }
+
+        function setFrameStyle(ss) {
+            document.head.querySelectorAll('link#framestyle').forEach(link => {
+                if (link.href === ss) {
+                    link.setAttribute('rel', 'stylesheet');
+                } else {
+                    link.setAttribute('rel', 'alternate stylesheet');
+                }
+            });
+        }
+
+
+    </script>
+
+</html>
